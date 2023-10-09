@@ -1,5 +1,9 @@
 [[redirects]]
-from = "/*"
-to = "https://luong-food-be.onrender.com/:splat"
-status = 200
-force = true
+  from = "/api/*"
+  to = "https://api.somewhere.com/v1/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
