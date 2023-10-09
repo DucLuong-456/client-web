@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/api/*"
-  to = "https://api.somewhere.com/v1/:splat"
+  from = "/*"
+  to = "https://luong-food-be.onrender.com/:splat"
   status = 200
 
 [[redirects]]
