@@ -13,6 +13,8 @@ function Products() {
     const [callback, setCallback] = state.productsAPI.callback
     const [loading, setLoading] = useState(false)
     const [isCheck, setIsCheck] = useState(false)
+    const fetchAPI='https://luong-food-be.onrender.com';
+    
     //console.log(products)
     const handleCheck = (id) =>{
         products.forEach(product => {
@@ -24,10 +26,10 @@ function Products() {
     const deleteProduct = async(id, public_id) => {
         try {
             setLoading(true)
-            const destroyImg = axios.post('/api/destroy', {public_id},{
+            const destroyImg =await axios.post(fetchAPI+'/api/destroy', {public_id},{
                 headers: {Authorization: token}
             })
-            const deleteProduct = axios.delete(`/api/products/${id}`, {
+            const deleteProduct =await axios.delete(`${fetchAPI}/api/products/${id}`, {
                 headers: {Authorization: token}
             })
 

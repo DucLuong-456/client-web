@@ -6,6 +6,8 @@ function Cart() {
     const [cart,setCart]= state.userAPI.cart;
     const [total, setTotal]= useState(0)
     const [token] = state.token
+    const fetchAPI='https://luong-food-be.onrender.com';
+
     useEffect(()=>{
         const getTotal = ()=>{
             const total = cart.reduce((prev, item)=>{
@@ -17,7 +19,7 @@ function Cart() {
     },[cart])
 
     const addToCart = async()=>{
-        await axios.patch('/user/addcart',{cart},{
+        await axios.patch(fetchAPI+'/user/addcart',{cart},{
             headers: {Authorization: token}
         })
     }
@@ -59,7 +61,7 @@ function Cart() {
         }
          console.log(payment)
          const {paymentID, address} = payment
-         await axios.post('/api/payment',{cart,paymentID, address},{headers: {Authorization: token}})
+         await axios.post(fetchAPI+'/api/payment',{cart,paymentID, address},{headers: {Authorization: token}})
         setCart([])
         addToCart([])
         alert("You are successfully an order")

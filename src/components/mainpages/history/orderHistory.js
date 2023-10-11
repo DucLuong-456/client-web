@@ -8,17 +8,18 @@ function OrderHistory() {
     const [history, setHistory] = state.userAPI.history
     const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
-
+    const fetchAPI='https://luong-food-be.onrender.com';
+    
     useEffect(() => {
         if(token){
             const getHistory = async() =>{
                 if(isAdmin){
-                    const res = await axios.get('/api/payment', {
+                    const res = await axios.get(fetchAPI+'/api/payment', {
                         headers: {Authorization: token}
                     })
                     setHistory(res.data)
                 }else{
-                    const res = await axios.get('/user/history', {
+                    const res = await axios.get(fetchAPI+'/user/history', {
                         headers: {Authorization: token}
                     })
                     setHistory(res.data)

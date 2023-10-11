@@ -8,11 +8,13 @@ export const GlobalState = createContext();
 
 export const DataProvider = ({children})=>{
     const [token,setToken] = useState(false)
+    const fetchAPI='https://luong-food-be.onrender.com';
+
     useEffect(()=>{
         const firstLogin = localStorage.getItem('firstLogin')
         if(firstLogin) {
             const refreshToken = async()=>{
-                const res = await axios.get('/user/refreshToken')
+                const res = await axios.get(fetchAPI+'/user/refreshToken')
                 setToken(res.data.accessToken)
 
                 setTimeout(() => {

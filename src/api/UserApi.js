@@ -6,12 +6,13 @@ function UserAPI(token){
     const [isAdmin, setIsAdmin] = useState(false);
     const [cart, setCart] = useState([])
     const [history,setHistory] = useState([])
+    const fetchAPI='https://luong-food-be.onrender.com';
     
     useEffect(()=>{
         if(token){
             const getUser = async ()=>{
                 try {
-                    const res = await axios.get('/user/infor',{
+                    const res = await axios.get(fetchAPI+'/user/infor',{
                         headers: {Authorization: token}
                     })
                     console.log(res.data.role)

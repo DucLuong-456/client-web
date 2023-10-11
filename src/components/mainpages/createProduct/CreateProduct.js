@@ -3,6 +3,7 @@ import axios from 'axios'
 import { GlobalState } from '../../../GlobalState'
 import { useNavigate,useParams } from 'react-router-dom'
 import Loading from '../utils/loading/Loading'
+
 const initialState ={
     product_id: '',
     title: '',
@@ -25,6 +26,8 @@ function CreateProduct() {
     const [onEdit, setOnEdit] = useState(false)
     const [products] = state.productsAPI.products
     const param = useParams()
+    const fetchAPI='https://luong-food-be.onrender.com';
+
     useEffect(()=>{
         if(param.id){
                 setOnEdit(true)
@@ -52,7 +55,7 @@ function CreateProduct() {
         try {
             if(!isAdmin) return alert("You're not an admin")
             setLoading(true)
-            await axios.post('/api/destroy', {public_id: images.public_id}, {
+            await axios.post(fetchAPI+'/api/destroy', {public_id: images.public_id}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -79,7 +82,7 @@ function CreateProduct() {
             formData.append('file', file)
 
             setLoading(true)
-            const res = await axios.post('/api/upload', formData, {
+            const res = await axios.post(fetchAPI+'/api/upload', formData, {
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
             })
             setLoading(false)
@@ -105,12 +108,12 @@ function CreateProduct() {
             if(!images) return alert("No Image Upload")
 
             if(onEdit){
-                await axios.put(`/api/products/${product._id}`, {...product, images}, {
+                await axios.put(`${fetchAPI}/api/products/${product._id}`, {...product, images}, {
                     headers: {Authorization: token}
                 })
             }
             else{
-                await axios.post('/api/products', {...product, images}, {
+                await axios.post(fetchAPI+'/api/products', {...product, images}, {
                     headers: {Authorization: token}
                 })
 

@@ -10,17 +10,18 @@ function Categories() {
     const [callback, setCallback] = state.categoriesAPI.callback
     const [onEdit, setOnEdit] = useState(false)
     const [id, setID] = useState('')
+    const fetchAPI='https://luong-food-be.onrender.com';
 
     const createCategory = async e =>{
         e.preventDefault()
         try {
             if(onEdit){
-                const res = await axios.put(`/api/category/${id}`, {name: category}, {
+                const res = await axios.put(`${fetchAPI}/api/category/${id}`, {name: category}, {
                     headers: {Authorization: token}
                 })
                 alert(res.data.msg)
             }else{
-                const res = await axios.post('/api/category', {name: category}, {
+                const res = await axios.post(fetchAPI+'/api/category', {name: category}, {
                     headers: {Authorization: token}
                 })
                 alert(res.data.msg)
@@ -42,7 +43,7 @@ function Categories() {
 
     const deleteCategory = async id =>{
         try {
-            const res = await axios.delete(`/api/category/${id}`, {
+            const res = await axios.delete(`${fetchAPI}/api/category/${id}`, {
                 headers: {Authorization: token}
             })
             alert(res.data.msg)

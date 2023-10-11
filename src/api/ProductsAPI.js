@@ -8,11 +8,11 @@ function ProductsAPI() {
     const [search,setSearch] = useState('')
     const [page,setPage] = useState(1)
     const [result,setResult] = useState(0)
-
+    const fetchAPI='https://luong-food-be.onrender.com';
 
     useEffect(()=>{
         const getProducts = async()=>{
-            const res = await axios.get(`/api/products?limit=${page*9}&${category}&${sort}&title[regex]=${search}`)
+            const res = await axios.get(`${fetchAPI}/api/products?limit=${page*9}&${category}&${sort}&title[regex]=${search}`)
             //?limit=${page}&${category}&${sort}&title[regex]=${search}
             setProducts(res.data.products)
             setResult(res.data.result)

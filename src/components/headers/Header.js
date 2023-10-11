@@ -7,13 +7,15 @@ import Menu from './icons/menu.svg'
 import axios from 'axios';
 function Header(){
     const state = useContext(GlobalState)
+    const fetchAPI='https://luong-food-be.onrender.com';
+
     //console.log(state)
     const [isLogged] = state.userAPI.isLogged;
     const [isAdmin] = state.userAPI.isAdmin;
     const [cart] = state.userAPI.cart;
     const [menu,setMenu] = useState(false)
     const logoutUser = async()=>{
-        await axios.get('/user/logout')
+        await axios.get(fetchAPI+'/user/logout')
         localStorage.clear();
         window.location.href= "/"
         

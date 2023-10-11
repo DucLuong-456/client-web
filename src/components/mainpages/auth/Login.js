@@ -4,6 +4,8 @@ import  axios from 'axios';
 
 
 function Login() {
+    const fetchAPI='https://luong-food-be.onrender.com';
+    
     const [user, setuser] = useState({
         email: '', password:''
     })
@@ -14,7 +16,7 @@ function Login() {
     const loginSubmit = async e=>{
         e.preventDefault();
         try {
-            await axios.post('/user/login',{...user})
+            await axios.post(fetchAPI+'/user/login',{...user})
             localStorage.setItem('firstLogin',true)
             window.location.href="/";
         } catch (err) {

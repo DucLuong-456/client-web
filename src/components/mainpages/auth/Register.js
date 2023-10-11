@@ -3,6 +3,8 @@ import {Link} from "react-router-dom"
 import  axios from 'axios';
 
 function Register() {
+    const fetchAPI='https://luong-food-be.onrender.com';
+
     const [user, setuser] = useState({
        name:'', email: '', password:''
     })
@@ -13,7 +15,7 @@ function Register() {
     const loginSubmit = async e=>{
         e.preventDefault();
         try {
-            await axios.post('/user/register',{...user})
+            await axios.post(fetchAPI+'/user/register',{...user})
             localStorage.setItem('firstLogin',true)
             window.location.href="/";
         } catch (err) {
