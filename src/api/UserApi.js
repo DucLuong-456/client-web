@@ -31,7 +31,7 @@ function UserAPI(token){
     useEffect(()=>{
         if(token){
             const getHistory = async()=>{
-                const res = await axios.get('/user/history',{headers: {Authorization: token}})
+                const res = await axios.get(fetchAPI+'/user/history',{headers: {Authorization: token}})
                 setHistory(res.data)
             }
             getHistory()
@@ -48,7 +48,7 @@ function UserAPI(token){
 
         if(check){
             setCart([...cart,{...product,quantity: 1}])
-            await axios.patch('/user/addcart',{cart: [...cart,{...product,quantity: 1}]},{
+            await axios.patch(fetchAPI+'/user/addcart',{cart: [...cart,{...product,quantity: 1}]},{
                 headers: {Authorization: token}
             })
         }
